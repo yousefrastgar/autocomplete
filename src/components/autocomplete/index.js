@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../loading";
 import "./autocomplete.css";
-import {boldString, capitalize} from "../../helpers";
+import {boldString, capitalizeString} from "../../helpers";
 
 const AutoComplete = (
     {
@@ -56,7 +56,7 @@ const AutoComplete = (
 
     const updateInputValue = event => {
         onInput(event.target.value);
-        setInputValue(capitalize(event.target.value));
+        setInputValue(capitalizeString(event.target.value));
         openDropdown();
     }
 
@@ -83,10 +83,9 @@ const AutoComplete = (
     return (
         <div ref={autocompleteField} className="material-form-field">
             <input
-                type="text" ref={searchField}
-                placeholder="search for name"
-                onInput={updateInputValue} value={inputValue}
-                onFocus={openDropdown}
+                type="text" ref={searchField} value={inputValue}
+                placeholder={`search for ${displayField}`}
+                onInput={updateInputValue} onFocus={openDropdown}
             />
             <label className="material-form-field-label">Start typing:</label>
             <ul ref={suggestionsList} className="material-dropdown closed">
